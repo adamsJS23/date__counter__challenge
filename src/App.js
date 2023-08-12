@@ -52,7 +52,7 @@ function App() {
           {counter === 0
             ? "Today is "
             : counter >= 0
-            ? `${Math.abscounter} days from today is `
+            ? `${Math.abs(counter)} days from today is `
             : `${Math.abs(counter)} days ago was `}
         </span>
         <span>{date.toDateString()}</span>
