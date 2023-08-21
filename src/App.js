@@ -1,48 +1,39 @@
-import logo from "./logo.svg";
-import "./App.css";
 import { useState } from "react";
 
 function App() {
   const [step, setStep] = useState(1);
   const [counter, setCounter] = useState(0);
+
   const date = new Date();
   date.setDate(date.getDate() + counter);
+
+  function handleReset() {
+    setStep(1);
+    setCounter(0);
+  }
   return (
     <div className="app">
       <div className="step_box">
-        <button
-          className="btn btn-step_minus"
-          onClick={() => setStep((s) => s - 1)}
-        >
-          -
-        </button>
-        <div>
-          <span>Step:</span>
-          <span>{step}</span>
-        </div>
-        <button
-          className="btn btn-step_plus"
-          onClick={() => setStep((s) => s + 1)}
-        >
-          +
-        </button>
+        <input
+          type="range"
+          min={0}
+          max={20}
+          value={step}
+          onChange={(evt) => setStep(+evt.target.value)}
+        />
+        <span>Step:{step}</span>
       </div>
 
       <div className="counter_box">
-        <button
-          className="btn btn-counter_minus"
-          onClick={() => setCounter((c) => c - step)}
-        >
+        <button className="btn" onClick={() => setCounter((c) => c - step)}>
           -
         </button>
-        <div>
-          <span>Counter:</span>
-          <span>{counter}</span>
-        </div>
-        <button
-          className="btn btn-counter_plus"
-          onClick={() => setCounter((c) => c + step)}
-        >
+        <input
+          type="text"
+          value={counter}
+          onChange={(evt) => setCounter(+evt.target.value)}
+        />
+        <button className="btn" onClick={() => setCounter((c) => c + step)}>
           +
         </button>
       </div>
@@ -57,6 +48,13 @@ function App() {
         </span>
         <span>{date.toDateString()}</span>
       </p>
+      {step !== 1 || counter !== 0 ? (
+        <button className="btn btn-reset" onClick={handleReset}>
+          Reset
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

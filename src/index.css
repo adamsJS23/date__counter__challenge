@@ -51,3 +51,7 @@ body {
 .btn {
   padding: 0.5rem 1rem;
 }
+
+.btn-reset {
+  align-self: center;
+}
